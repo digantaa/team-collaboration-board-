@@ -44,7 +44,7 @@ export default function TaskList({ boardId }) {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4 text-blue-600">Tasks</h2>
+      <h2 className="text-xl font-semibold mb-4 text-stone-600">Tasks</h2>
 
       <div className="flex gap-2 mb-6">
         <input className="border p-2 rounded-md w-1/4" placeholder="Title"
