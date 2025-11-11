@@ -14,23 +14,23 @@ export default function TaskList({ boardId }) {
 
   useEffect(() => {
     if (boardId)
-      axios.get(`http://localhost:5000/api/tasks/${boardId}`).then(res => setTasks(res.data));
+      axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${boardId}`).then(res => setTasks(res.data));
   }, [boardId]);
 
   const addTask = async () => {
     if (!task.title) return alert("Title required");
-    const res = await axios.post("http://localhost:5000/api/tasks", { ...task, boardId });
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/tasks`, { ...task, boardId });
     setTasks([...tasks, res.data]);
     setTask({ title: "", description: "", status: "To Do", priority: "Medium", assignedTo: "", dueDate: "" });
   };
 
   const updateStatus = async (id, status) => {
-    const res = await axios.put(`http://localhost:5000/api/tasks/${id}`, { status });
+    const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${id}`, { status });
     setTasks(tasks.map(t => (t._id === id ? res.data : t)));
   };
 
   const deleteTask = async (id) => {
-    await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${id}`);
     setTasks(tasks.filter(t => t._id !== id));
   };
 

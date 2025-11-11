@@ -6,13 +6,13 @@ export default function BoardList({ onSelect }) {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/boards")
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/boards`)
       .then(res => setBoards(res.data));
   }, []);
 
   const addBoard = async () => {
     if (!name) return;
-    const res = await axios.post("http://localhost:5000/api/boards", { name });
+    const res = await axios.postF(`${import.meta.env.VITE_BACKEND_URL}/api/boards`, { name });
     setBoards([...boards, res.data]);
     setName("");
   };
